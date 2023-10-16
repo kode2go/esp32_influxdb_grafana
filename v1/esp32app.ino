@@ -25,8 +25,7 @@ HTTPClient ask;
 const char* ssid     = "xx"; //Wifi SSID
 const char* password = "xx"; //Wifi Password
 
-//const char* serverUrl = "http://34.29.140.126/flask/rec";
-const char* serverUrl = "http://172.30.223.25:8086/write?db=esp02";
+const char* serverUrl = "http://34.125.194.47/influxdb/write?db=esp02";
 const char* code_version = "esp_32_flask_api_serial_01.5.py";
 const String measurement = "data";
 
@@ -66,7 +65,6 @@ void loop() {
 
     double power = rawIrms * 230.0;
     String dataToSend = measurement + " value=" + String(power);    
-//    String dataToSend = "device_name=esp01&data=" + String(power);
     Serial.print("Power: ");
     Serial.println(power);
 
