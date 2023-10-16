@@ -2,7 +2,11 @@
 
 # Install & Setup Grafana
 
+See: https://github.com/kode2go/grafana
+
 # Install & Setup Influx DB
+
+See: https://github.com/kode2go/influxdb/blob/main/README.md
 
 `sudo systemctl start influxdb`
 
@@ -30,6 +34,8 @@ data
 ```
 
 ## Setup Nginx
+
+`sudo apt-get install nginx`
 
 `sudo nano /etc/nginx/sites-available/influxdb`
 
