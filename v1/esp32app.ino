@@ -28,6 +28,7 @@ const char* password = "xx"; //Wifi Password
 const char* serverUrl = "http://34.125.194.47/influxdb/write?db=esp02";
 const char* code_version = "esp_32_flask_api_serial_01.5.py";
 const String measurement = "data";
+const char* device_num = "espxx;
 
  
 void setup(){
