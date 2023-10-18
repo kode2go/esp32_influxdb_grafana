@@ -70,6 +70,7 @@ void setup(){
   pinMode(d15Pin, OUTPUT);
   // Set the initial state of D15 to LOW
   digitalWrite(d15Pin, LOW);
+  pinMode(0, INPUT_PULLUP); // Use internal pull-up resistor for the button
 }
 
 
@@ -99,6 +100,13 @@ void loop() {
     double rawIrms = emon1.calcIrms(3000); // Calculate Irms only
 
     double power = rawIrms * 230.0;
+
+      // Check if power is greater than 1500
+    if (power > 1500) {
+        digitalWrite(d15Pin, LOW);
+    } else {
+        digitalWrite(d15Pin, HIGH);
+    }
     String dataToSend = measurement + " value=" + String(power);    
     Serial.print("Power: ");
     Serial.println(power);
