@@ -81,6 +81,50 @@ On local machine:
 
 `curl -i -XPOST 'http://localhost:8086/write?db=esp02' --data-binary 'data value=20'`
 
+```
+curl -i -XPOST 'http://localhost:8086/query?db=esp02' --data-binary "q=SELECT LAST(*) FROM data"
+HTTP/1.1 200 OK
+Content-Type: application/json
+Request-Id: e4b47267-786d-11ee-802e-000000000000
+X-Influxdb-Build: OSS
+X-Influxdb-Version: 1.6.4
+X-Request-Id: e4b47267-786d-11ee-802e-000000000000
+Date: Wed, 01 Nov 2023 04:19:47 GMT
+Transfer-Encoding: chunked
+
+{"results":[{"statement_id":0,"series":[{"name":"data","columns":["time","last_value"],"values":[["2023-10-31T16:37:22.9208273Z",21]]}]}]}
+```
+
+```
+curl -i -XPOST 'http://localhost:8086/query?db=esp02' --data-binary "q=SELECT LAST(*) FROM data" > results.txt
+```
+
+Must install jq on Ubuntu:
+
+```
+cat result.txt | jq -r '.results[0].series[0].values[0][1]'
+21
+```
+
+### Create/Insere Measurement/Data
+
+```
+> INSERT switch state=1
+> SELECT * FROM switch
+name: switch
+time                state
+----                -----
+1698817760089185500 1
+> INSERT switch state=0
+> SELECT * FROM switch
+name: switch
+time                state
+----                -----
+1698817760089185500 1
+1698817777604417800 0
+>
+```
+
 On external machine:
 
 `curl -i -XPOST 'http://34.125.194.47/influxdb/write?db=esp02' --data-binary 'data value=50'`
