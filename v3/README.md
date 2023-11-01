@@ -20,6 +20,16 @@ cloud:
 - nginx
 - static query page to switch on/off pin15
 
+# Code
+
+test_get.ino: only to test how to get values, not final code.
+
+Note you to parse http string you need to install ArduinoJson Lib in ArduinoIDE:
+
+## To Do
+- Create a new measurement in esp032 DB called "switch" and state = 1/0
+- Create static nginx page to write state 1/0
+
 # HTML Query
 
 ![image](https://github.com/kode2go/esp32_influxdb_grafana/assets/29664888/42859b5d-ee9f-4577-98e6-120c7919b1a9)
