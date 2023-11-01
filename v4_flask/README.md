@@ -1,3 +1,16 @@
+# Overview
+
+Cloud:
+- Nginx: Grafana, Influx, Flask
+
+- Flask: set value in influxdb
+
+ESP32:
+- reads from influxdb and checks state each second
+
+To Do:
+Add post message as well
+
 # Flask Set Pin
 
 ```
