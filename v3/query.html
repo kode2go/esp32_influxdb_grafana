@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InfluxDB Query</title>
+</head>
+<body>
+    <h1>InfluxDB Query</h1>
+    <button id="queryButton">Run Query</button>
+    <div id="queryResult"></div>
+    
+    <script>
+        document.getElementById('queryButton').addEventListener('click', function () {
+            // Define the InfluxDB query
+            const query = "SELECT LAST(*) FROM data";
+            
+            // Send the query to InfluxDB via AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://34.125.194.47/influxdb/query?db=esp02', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    const response = JSON.parse(xhr.responseText);
+                    
+                    // Extract the result and display it
+                    const result = response.results[0].series[0].values[0][1];
+                    document.getElementById('queryResult').innerHTML = `Result: ${result}`;
+                } else if (xhr.readyState === 4) {
+                    document.getElementById('queryResult').innerHTML = 'Error: Failed to send the query';
+                }
+            };
+            xhr.send('q=' + query);
+        });
+    </script>
+</body>
+</html>
