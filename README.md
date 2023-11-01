@@ -1,5 +1,13 @@
 # esp32_influxdb_grafana
 
+## v1
+
+## v2
+
+## v3
+
+Get state from influxdb so I can control the pin on and off remotely
+
 # Install & Setup Grafana
 
 See: https://github.com/kode2go/grafana
